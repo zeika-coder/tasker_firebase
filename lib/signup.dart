@@ -74,7 +74,7 @@ class _RegistroState extends State<Registro> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Image.asset(
-                    'images/logo.png',
+                    'assets/images/logo.png',
                     height: 250,
                     width: 250,
                   ),

@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main()  async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(HomeScreen());
@@ -25,7 +25,6 @@ class HomeScreen extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -89,7 +88,9 @@ class _MisTareasPageState extends State<MisTareasPage>
   int _openTasks = 0;
   int _myTasks = 0;
 
-  List<Map<String, dynamic>> openAndInProgressTasks = [];
+  //List<Map<String, dynamic>> openAndInProgressTasks = [];
+  List<Map<dynamic, dynamic>> openAndInProgressTasks = [];
+
   late AnimationController controller;
 
   @override
@@ -105,8 +106,11 @@ class _MisTareasPageState extends State<MisTareasPage>
 
   void _countTasksByStatus() {
     DatabaseReference tasksRef = ref.child('tasks');
+    print("tareas");
+    print(tasksRef);
     tasksRef.onValue.listen((DatabaseEvent event) {
       final data = event.snapshot.value;
+      print(data);
       if (data != null && data is Map<dynamic, dynamic>) {
         int countInProgress = 0;
         int countOpen = 0;
@@ -114,7 +118,7 @@ class _MisTareasPageState extends State<MisTareasPage>
         int countMyTask = 0;
 
         data.forEach((key, value) {
-          final task = value as Map<String, dynamic>;
+          final task = value as Map<dynamic, dynamic>;
           final status = task['estado'];
           if (status == "En proceso") {
             countInProgress++;
@@ -144,10 +148,10 @@ class _MisTareasPageState extends State<MisTareasPage>
     tasksRef.onValue.listen((DatabaseEvent event) {
       final data = event.snapshot.value;
       if (data != null && data is Map<dynamic, dynamic>) {
-        List<Map<String, dynamic>> filteredTasks = [];
+        List<Map<dynamic, dynamic>> filteredTasks = [];
 
         data.forEach((key, value) {
-          final task = value as Map<String, dynamic>;
+          final task = value as Map<dynamic, dynamic>;
           final status = task['estado'];
 
           // Filtrar tareas por estado "Abierto" o "En proceso"
@@ -397,11 +401,11 @@ class ActividadPage extends StatefulWidget {
 }
 
 class _ActividadPageState extends State<ActividadPage> {
-  List<Map<String, dynamic>> recentTasks = [];
+  List<Map<dynamic, dynamic>> recentTasks = [];
 
-  List<Map<String, dynamic>> inProgressTasks = [];
+  List<Map<dynamic, dynamic>> inProgressTasks = [];
 
-  List<Map<String, dynamic>> completedTasks = [];
+  List<Map<dynamic, dynamic>> completedTasks = [];
   final List<String> tabs = ["Recientes", "En proceso", "Completados"];
 
   DatabaseReference ref = FirebaseDatabase.instance.ref();
@@ -417,12 +421,12 @@ class _ActividadPageState extends State<ActividadPage> {
     tasksRef.onValue.listen((DatabaseEvent event) {
       final data = event.snapshot.value;
       if (data != null && data is Map<dynamic, dynamic>) {
-        List<Map<String, dynamic>> openTask = [];
-        List<Map<String, dynamic>> processTask = [];
-        List<Map<String, dynamic>> completedTask = [];
+        List<Map<dynamic, dynamic>> openTask = [];
+        List<Map<dynamic, dynamic>> processTask = [];
+        List<Map<dynamic, dynamic>> completedTask = [];
 
         data.forEach((key, value) {
-          final task = value as Map<String, dynamic>;
+          final task = value as Map<dynamic, dynamic>;
           final status = task['estado'];
           task['key'] = key;
           // Filtrar tareas por estado "Abierto" o "En proceso"
@@ -470,7 +474,7 @@ class _ActividadPageState extends State<ActividadPage> {
     );
   }
 
-  Widget _buildTaskList(List<Map<String, dynamic>> tasks) {
+  Widget _buildTaskList(List<Map<dynamic, dynamic>> tasks) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

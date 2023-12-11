@@ -24,7 +24,7 @@ class NewTaskScreen extends StatelessWidget {
 }
 
 class NewTaskPage extends StatefulWidget {
-  final Map<String, dynamic>? taskData;
+  final Map<dynamic, dynamic>? taskData;
 
   const NewTaskPage({Key? key, this.taskData}) : super(key: key);
 
@@ -75,7 +75,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
       if (data != null && data is Map<dynamic, dynamic>) {
         Map<dynamic, dynamic> values = data;
         values.forEach((key, value) {
-          final usuario = value as Map<String, dynamic>;
+          final usuario = value as Map<dynamic, dynamic>;
           if (usuario['nombre'] != null) {
             setState(() {
               _assignedToList.add(usuario['nombre'].toString());
