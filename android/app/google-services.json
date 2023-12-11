@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "574267044336",
+    "firebase_url": "https://tasker-e9a49-default-rtdb.firebaseio.com",
+    "project_id": "tasker-e9a49",
+    "storage_bucket": "tasker-e9a49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574267044336:android:c753a3e076990ee102ad35",
+        "android_client_info": {
+          "package_name": "com.andreasg.task_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD88SyrYlkrVRRDewBYG2dhxvnYH_15KA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
